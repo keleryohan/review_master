@@ -1,3 +1,3 @@
 export default function TopBar() {
-  return <div></div>;
+  return <div></div>
 }

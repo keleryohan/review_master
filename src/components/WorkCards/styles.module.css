@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Andada+Pro&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Andada+Pro&display=swap');
 
 .mainContainer {
   width: 90%;
@@ -23,5 +23,5 @@
   border: none;
   border-radius: 0.5rem;
 
-  font-family: "Andada Pro", serif;
+  font-family: 'Andada Pro', serif;
 }

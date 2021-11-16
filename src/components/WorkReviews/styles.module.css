@@ -1,8 +1,8 @@
-@import url("https://fonts.googleapis.com/css2?family=Andada+Pro&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Andada+Pro&display=swap');
 
 .mainContainer {
   width: 90%;
-  font-family: "Andada Pro", serif;
+  font-family: 'Andada Pro', serif;
 
   display: flex;
   flex-direction: column;
