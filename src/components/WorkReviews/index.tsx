@@ -1,6 +1,6 @@
 import styles from './styles.module.css'
 
-export default function WorkReviews({ reviews }) {
+const WorkReviews = ({ reviews }) => {
   return (
     <div className={styles.mainContainer}>
       {reviews.map((review, i) => {
@@ -21,3 +21,5 @@ export default function WorkReviews({ reviews }) {
     </div>
   )
 }
+
+export default WorkReviews

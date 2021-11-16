@@ -1,3 +1,5 @@
-export default function TopBar() {
+const TopBar = () => {
   return <div></div>
 }
+
+export default TopBar

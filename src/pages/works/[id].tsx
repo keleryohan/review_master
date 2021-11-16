@@ -1,6 +1,6 @@
-import WorkReviews from '../../components/WorkReviews'
+import WorkReviews from '~/components/WorkReviews'
 
-export default function Review(props) {
+const Review = props => {
   return (
     <div>
       <h1>WORK {props.id}</h1>
@@ -8,7 +8,7 @@ export default function Review(props) {
     </div>
   )
 }
-export async function getServerSideProps({ params }) {
+export const getServerSideProps = async ({ params }) => {
   const reviews = [
     {
       title: 'bom d-',
@@ -33,3 +33,5 @@ export async function getServerSideProps({ params }) {
     },
   }
 }
+
+export default Review

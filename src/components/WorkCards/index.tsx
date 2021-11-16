@@ -7,7 +7,7 @@ type WorkProps = {
   rating: number
 }
 
-export default function WorkCards({ works }: WorkProps[] | any) {
+const WorkCards = ({ works }: WorkProps[] | any) => {
   return (
     <div className={styles.mainContainer}>
       {works.map(work => {
@@ -22,3 +22,5 @@ export default function WorkCards({ works }: WorkProps[] | any) {
     </div>
   )
 }
+
+export default WorkCards

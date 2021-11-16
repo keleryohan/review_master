@@ -1,6 +1,6 @@
 import WorkCards from '../../components/WorkCards'
 
-export default function works(props) {
+export const works = props => {
   return (
     <div>
       <h1>works</h1>
@@ -9,7 +9,7 @@ export default function works(props) {
   )
 }
 
-export async function getServerSideProps() {
+export const getServerSideProps = async () => {
   const workList = [
     { id: 1, title: 'avengers', description: 'first description', rating: 10 },
     {
@@ -33,3 +33,5 @@ export async function getServerSideProps() {
     },
   }
 }
+
+export default works
