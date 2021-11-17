@@ -2,12 +2,13 @@ import WorkReviews from '~/components/WorkReviews'
 
 const Review = props => {
   return (
-    <div>
+    <div style={{ padding: 30 }}>
       <h1>WORK {props.id}</h1>
       <WorkReviews reviews={props.reviews} />
     </div>
   )
 }
+
 export const getServerSideProps = async ({ params }) => {
   const reviews = [
     {
@@ -21,7 +22,7 @@ export const getServerSideProps = async ({ params }) => {
       rating: 8.7,
     },
     {
-      title: 'titletitle',
+      title: 'title',
       text: 'tava ruim, agora parece que piorou',
       rating: 5.5,
     },
