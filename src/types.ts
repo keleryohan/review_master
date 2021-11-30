@@ -1,6 +1,6 @@
 export type WorkProps = {
   id: string
-  title: string
+  name: string
   description: string
-  rating: number
+  note: number
 }

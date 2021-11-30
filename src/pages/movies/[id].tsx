@@ -1,15 +1,64 @@
+import React, {useCallback, useEffect} from 'react'
+import { useRouter } from 'next/router'
+
 import WorkReviews from '~/components/WorkReviews'
 
+import api from '~/services/api'
+
+import styles from './styles.module.css'
+
 const Review = props => {
+  const router = useRouter()
+
+  const handleAddReview = useCallback(() => {
+    router.push({ 
+      pathname: "/reviews/add", 
+      query: {
+        work: props.work.id,
+        gender: props.work.gender
+      } 
+    })
+  }, [router, props.work.id, props.work.gender])
+
+  useEffect(() => {
+    if (props.errorMsg) {
+      window.alert(props.errorMsg)
+    }
+  }, [props.errorMsg])
+
   return (
     <div style={{ padding: 30 }}>
-      <h1>WORK {props.id}</h1>
+      <div className={styles.reviews_header}>
+        <h1>WORK {props.work.name}</h1>
+        <button onClick={handleAddReview}>Avaliar</button>
+      </div>
+
       <WorkReviews reviews={props.reviews} />
     </div>
   )
 }
 
 export const getServerSideProps = async ({ params }) => {
+  
+  try {
+    const workResponse = await api.get(`works/${params.id}`) 
+
+    const reviewsResponse = await api.get(`reviews/?work_id=${params.id}`)
+
+    return {
+      props: {
+        reviews: reviewsResponse.data,
+        work: workResponse.data,
+      },
+    }
+  } catch (error) {
+    return {
+      props: {
+        errorMsg: error.response?.data?.message || "Ops, algo deu errado"
+      }
+    }
+  }
+
   const reviews = [
     {
       title: 'bom d-',

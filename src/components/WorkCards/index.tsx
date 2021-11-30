@@ -15,9 +15,9 @@ const WorkCards = ({ works }: WorkProps[] | any) => {
             className={styles.work}
             onClick={() => router.push(router.pathname + '/' + work.id)}
           >
-            <h2>{work.title}</h2>
+            <h2>{work.name}</h2>
             <h3>{work.description}</h3>
-            <h3>{work.rating} </h3>
+            <h3>{work.note} </h3>
           </div>
         )
       })}

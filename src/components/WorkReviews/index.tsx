@@ -10,10 +10,10 @@ const WorkReviews = ({ reviews }) => {
               <p>{review.title}</p>
             </div>
             <div>
-              <p>{review.text}</p>
+              <p>{review.description}</p>
             </div>
             <div>
-              <p>{review.rating} </p>
+              <p>{review.note} </p>
             </div>
           </div>
         )
