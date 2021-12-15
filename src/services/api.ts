@@ -48,11 +48,24 @@ const sendReview = async (reviewFormData: ReviewFormData) => {
     })
 }
 
+const deleteReview = async (reviewId: number) => {
+  return axiosInstance
+    .delete(`reviews/${reviewId}`)
+    .then(res => {
+      window.alert('Review deletada!')
+      return res.data
+    })
+    .catch(error => {
+      if (error.response) window.alert('Erro ao deletar review!')
+    })
+}
+
 export const api = {
   getWorks,
   getWork,
   getReviews,
   sendReview,
+  deleteReview,
 }
 
 export default api
