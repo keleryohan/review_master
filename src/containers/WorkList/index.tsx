@@ -1,25 +1,29 @@
 import React from 'react'
+import { useEffect } from 'react'
 
 import { WorkCards } from '~/components'
-import { WorkGender, WorkData } from '~/types'
+import { WorkData, WorkFilters } from '~/types'
 import { api } from '~/services/api'
 import styles from './styles.module.css'
+import WorkFilter from '~/components/WorkFilter'
 
-const WorkList = ({ pageTitle, workGender }: { pageTitle: string; workGender: WorkGender }) => {
+const WorkList = ( props ) => {
   const [workList, setWorkList] = React.useState<WorkData[]>([])
 
-  const getWorkList = React.useCallback(
-    async () => setWorkList(await api.getWorks(workGender)),
-    [workGender]
-  )
+  useEffect( () => {
+    const auxSetWork = async () => {
+      const filters = { gender : props.workGender } 
+      setWorkList(await api.getWorks( filters ))
+  }
+  auxSetWork();
+    
+  },[props.workGender] )
 
-  React.useEffect(() => {
-    getWorkList()
-  }, [getWorkList])
 
   return (
     <div className={styles.mainContainer}>
-      <h1 className={styles.title}>{pageTitle}</h1>
+      <WorkFilter setWorkList={setWorkList} gender={props.workGender} />
+      <h1 className={styles.title}>{props.pageTitle}</h1>
       <WorkCards works={workList} />
     </div>
   )

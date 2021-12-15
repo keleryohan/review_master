@@ -4,13 +4,17 @@ export type WorkData = {
   created_at: string
   published_at: string
   description: string
-  gender: WorkGender
+  gender: string;
   plataforms?: string[]
   game_mode?: string
   origin_country: string
 }
 
-export type WorkGender = 'game' | 'movie'
+export type WorkFilters = {
+  gender: string;
+  name?: string;
+  order_by?: string;
+}
 
 export type ReviewData = {
   id: string

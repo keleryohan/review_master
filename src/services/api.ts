@@ -1,14 +1,26 @@
 import axios from 'axios'
-import { WorkData, WorkGender, ReviewData, ReviewFormData } from '~/types'
+import { WorkData, ReviewData, ReviewFormData, WorkFilters } from '~/types'
 
 const axiosInstance = axios.create({
   baseURL: 'http://localhost:8080/',
   timeout: 5000,
 })
 
-const getWorks = async (workGender: WorkGender): Promise<WorkData[]> => {
+const getWorks = async (props: WorkFilters): Promise<WorkData[]> => {
+  let link = `works/?gender=${props.gender}`
+  if(props.order_by){
+    link += `&&order_by=${props.order_by}`
+  }
+  if(props.name){
+    link += `&&name=${props.name}`
+  }
+
+  //console.log(props.order_by)
+
+  console.log(link);
+
   return axiosInstance
-    .get<WorkData[]>(`works/?gender=${workGender}`)
+    .get<WorkData[]>(link)
     .then(res => res.data)
     .catch(error => {
       if (error.response) window.alert('Erro ao obter os dados da obra!')
