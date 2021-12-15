@@ -1,9 +1,9 @@
 import React from 'react'
 import { useRouter } from 'next/router'
-import { WorkProps } from '~/types'
+import { WorkData } from '~/types'
 import styles from './styles.module.css'
 
-const WorkCards = ({ works }: WorkProps[] | any) => {
+const WorkCards = ({ works }: WorkData[] | any) => {
   const router = useRouter()
 
   return (
@@ -11,13 +11,12 @@ const WorkCards = ({ works }: WorkProps[] | any) => {
       {works.map(work => {
         return (
           <div
-            key={work}
+            key={work.name}
             className={styles.work}
             onClick={() => router.push(router.pathname + '/' + work.id)}
           >
-            <h2>{work.name}</h2>
-            <h3>{work.description}</h3>
-            <h3>{work.note} </h3>
+            <h2 className={styles.title}>{work.name}</h2>
+            <h3 className={styles.description}>{work.description}</h3>
           </div>
         )
       })}

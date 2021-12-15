@@ -1,15 +1,14 @@
 .container {
-  width: 90%;
-
   display: flex;
   flex-direction: column;
-  margin: auto;
-
-  max-width: 800px;
+  justify-content: space-between;
+  align-items: stretch;
+  margin-bottom: 2rem;
 }
 
 .container h2 {
-  margin: 20px 0 30px;
+  font-size: 1.2rem;
+  margin: 20px 0 15px;
 }
 
 .container input,
@@ -19,7 +18,7 @@
   border-radius: 5px;
   border-width: 1px;
   border-color: #c4c4c4;
-  padding: 8px;
+  padding: 4px;
   -webkit-appearance: none;
   box-shadow: none;
 }
@@ -29,6 +28,7 @@
   border-style: none;
   padding: 10px;
   transition: 0.5s;
+  align-self: flex-start;
 }
 
 .container button:hover {

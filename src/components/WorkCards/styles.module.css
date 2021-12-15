@@ -1,13 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Andada+Pro&display=swap');
 
 .mainContainer {
-  width: 90%;
-
   display: flex;
   flex-direction: column;
   align-items: center;
-
-  margin: auto;
 }
 
 .work {
@@ -28,7 +24,17 @@
   font-family: 'Andada Pro', serif;
 }
 
+.title {
+  font-size: 1.4rem;
+  margin: 1rem 0;
+}
+
+.description {
+  font-size: 1.2rem;
+  margin: 0.5rem 0;
+}
+
 .work:hover {
   cursor: pointer;
-  box-shadow: 0px -1px 14px 2px rgba(0, 0, 0, 0.4);
+  opacity: 0.8;
 }
