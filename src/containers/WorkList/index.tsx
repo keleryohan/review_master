@@ -7,18 +7,16 @@ import { api } from '~/services/api'
 import styles from './styles.module.css'
 import WorkFilter from '~/components/WorkFilter'
 
-const WorkList = ( props ) => {
+const WorkList = props => {
   const [workList, setWorkList] = React.useState<WorkData[]>([])
 
-  useEffect( () => {
+  useEffect(() => {
     const auxSetWork = async () => {
-      const filters = { gender : props.workGender } 
-      setWorkList(await api.getWorks( filters ))
-  }
-  auxSetWork();
-    
-  },[props.workGender] )
-
+      const filters = { gender: props.workGender }
+      setWorkList(await api.getWorks(filters))
+    }
+    auxSetWork()
+  }, [props.workGender])
 
   return (
     <div className={styles.mainContainer}>
