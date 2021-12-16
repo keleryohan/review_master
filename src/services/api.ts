@@ -21,7 +21,11 @@ const getWorks = async (props: WorkFilters): Promise<WorkData[]> => {
     .get<WorkData[]>(link)
     .then(res => res.data)
     .catch(error => {
-      if (error.response) window.alert('Erro ao obter os dados da obra!')
+      if (error.response) {
+        window.alert(error.response.data.message)
+      } else {
+        window.alert('Erro ao obter os dados da obra!')
+      }
       return []
     })
 }
