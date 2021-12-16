@@ -8,14 +8,9 @@ const axiosInstance = axios.create({
 
 const getWorks = async (props: WorkFilters): Promise<WorkData[]> => {
   let link = `works/?gender=${props.gender}`
-  if(props.order_by){
-    link += `&&order_by=${props.order_by}`
-  }
-  if(props.name){
-    link += `&&name=${props.name}`
-  }
 
-  //console.log(props.order_by)
+  if (props.order_by) link += `&&order_by=${props.order_by}`
+  if (props.name) link += `&&name=${props.name}`
 
   return axiosInstance
     .get<WorkData[]>(link)
@@ -35,7 +30,11 @@ const getWork = async (workId: number): Promise<WorkData> => {
     .get<WorkData>(`works/${workId}`)
     .then(res => res.data)
     .catch(error => {
-      if (error.response) window.alert('Erro ao obter a obra de ID ' + workId + '!')
+      if (error.response) {
+        window.alert(error.response.data.message)
+      } else {
+        window.alert('Erro ao obter a obra de ID ' + workId + '!')
+      }
       return undefined
     })
 }
@@ -45,7 +44,11 @@ const getReviews = async (workId: number): Promise<ReviewData[]> => {
     .get<ReviewData[]>(`reviews/?work_id=${workId}`)
     .then(res => res.data)
     .catch(error => {
-      if (error.response) window.alert('Erro ao obter as reviews!')
+      if (error.response) {
+        window.alert(error.response.data.message)
+      } else {
+        window.alert('Erro ao obter as reviews!')
+      }
       return undefined
     })
 }
@@ -58,7 +61,11 @@ const sendReview = async (reviewFormData: ReviewFormData) => {
       return res.data
     })
     .catch(error => {
-      if (error.response) window.alert('Erro ao enviar a review!')
+      if (error.response) {
+        window.alert(error.response.data.message)
+      } else {
+        window.alert('Erro ao enviar a review!')
+      }
     })
 }
 
@@ -70,7 +77,11 @@ const deleteReview = async (reviewId: number) => {
       return res.data
     })
     .catch(error => {
-      if (error.response) window.alert('Erro ao deletar review!')
+      if (error.response) {
+        window.alert(error.response.data.message)
+      } else {
+        window.alert('Erro ao deletar review!')
+      }
     })
 }
 
