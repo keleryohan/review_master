@@ -19,8 +19,8 @@ const WorkFilter = (props) => {
     const auxSetWork = async () => {
       const filters = {
         gender: props.gender,
-        name: name,
-        order_by: orderBy.value,
+        name: name || null,
+        order_by: orderBy? orderBy.value : null,
       }
       props.setWorkList(await api.getWorks( filters ))
     }
