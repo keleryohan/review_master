@@ -17,14 +17,12 @@ const getWorks = async (props: WorkFilters): Promise<WorkData[]> => {
 
   //console.log(props.order_by)
 
-  console.log(link);
-
   return axiosInstance
     .get<WorkData[]>(link)
     .then(res => res.data)
     .catch(error => {
       if (error.response) window.alert('Erro ao obter os dados da obra!')
-      return undefined
+      return []
     })
 }
 
