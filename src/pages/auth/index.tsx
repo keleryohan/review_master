@@ -3,16 +3,23 @@ import React from 'react'
 import styles from './styles.module.css'
 
 const AuthPage = () => {
+  const [inputUser, setInputUser] = React.useState('')
+  const [inputName, setInputName] = React.useState('')
+  const [inputPassword, setInputPassword] = React.useState('')
+
   const router = useRouter()
   const { mode } = router.query
-  const title = mode === 'login' ? 'Login' : 'Register'
-  const redirectTitle = mode === 'login' ? 'Register' : 'Login'
-
-  const [inputUser, setInputUser] = React.useState('')
-  const [inputPassword, setInputPassword] = React.useState('')
+  const isLogin = React.useMemo(() => mode === 'login', [mode])
+  const title = React.useMemo(() => (isLogin ? 'Login' : 'Register'), [isLogin])
+  const redirectMode = React.useMemo(() => (isLogin ? 'register' : 'login'), [isLogin])
 
   const handleUsernameChange = React.useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => setInputUser(event.target.value),
+    []
+  )
+
+  const handleNameChange = React.useCallback(
+    (event: React.ChangeEvent<HTMLInputElement>) => setInputName(event.target.value),
     []
   )
 
@@ -27,15 +34,19 @@ const AuthPage = () => {
     router.push('/home')
   }, [inputUser, inputPassword, router])
 
-  const getRedirectUrl = React.useCallback(() => {
-    if (mode === 'login') return '/auth?mode=register'
-    return '/auth?mode=login'
-  }, [mode])
-
   return (
     <div className={styles.mainContainer}>
       <h1 className={styles.title}>{title}</h1>
       <div className={styles.formContainer}>
+        {!isLogin && (
+          <input
+            type='text'
+            placeholder='name'
+            className={styles.input}
+            value={inputName}
+            onChange={handleNameChange}
+          />
+        )}
         <input
           type='text'
           placeholder='username'
@@ -53,7 +64,7 @@ const AuthPage = () => {
         <button className={styles.button} onClick={handleClick}>
           {title}
         </button>
-        <a href={getRedirectUrl()}>{redirectTitle} by clicking here</a>
+        <a href={`/auth?mode=${redirectMode}`}>Go to {redirectMode} page</a>
       </div>
     </div>
   )

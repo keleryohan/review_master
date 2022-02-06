@@ -27,3 +27,5 @@ export type ReviewData = {
 }
 
 export type ReviewFormData = Omit<ReviewData, 'created_at' | 'id'>
+
+export type AuthMode = 'login' | 'register'
