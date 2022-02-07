@@ -12,8 +12,12 @@ const getWorks = async (props: WorkFilters): Promise<WorkData[]> => {
   if (props.order_by) link += `&&order_by=${props.order_by}`
   if (props.name) link += `&&name=${props.name}`
 
-  return axiosInstance
-    .get<WorkData[]>(link)
+  return axios(link, {
+    method: 'GET',
+    headers: {
+      token: localStorage.getItem('token') || ' ',
+    },
+  })
     .then(res => res.data)
     .catch(error => {
       if (error.response) {
@@ -85,12 +89,44 @@ const deleteReview = async (reviewId: number) => {
     })
 }
 
+const createUser = async (name: string, email: string, password: string) => {
+  return axiosInstance
+    .post(`users`, { name, email, password })
+    .then(res => res.data)
+    .catch(error => {
+      if (error.response) {
+        window.alert(error.response.data.message)
+      } else {
+        window.alert('Erro ao criar usuário!')
+      }
+    })
+}
+
+const loginUser = async (email: string, password: string) => {
+  return axiosInstance
+    .post(`users/session`, { email, password })
+    .then(res => {
+      localStorage.setItems('token', res.data.token)
+      return res.status
+    })
+    .catch(error => {
+      if (error.response) {
+        window.alert(error.response.data.message)
+      } else {
+        window.alert('Erro ao fazer login!')
+      }
+      return null
+    })
+}
+
 export const api = {
   getWorks,
   getWork,
   getReviews,
   sendReview,
   deleteReview,
+  createUser,
+  loginUser,
 }
 
 export default api

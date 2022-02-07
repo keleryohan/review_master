@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router'
 import React from 'react'
 import styles from './styles.module.css'
+import api from '~/services/api'
 
 const AuthPage = () => {
   const [inputUser, setInputUser] = React.useState('')
@@ -28,11 +29,15 @@ const AuthPage = () => {
     []
   )
 
-  const handleClick = React.useCallback(() => {
-    console.log(inputUser, inputPassword)
-    // TODO: check auth
-    router.push('/home')
-  }, [inputUser, inputPassword, router])
+  const handleClick = React.useCallback(async () => {
+    const responseStatus = isLogin
+      ? await api.loginUser(inputUser, inputPassword)
+      : await api.createUser(inputUser, inputName, inputPassword)
+
+    if (responseStatus === 200) {
+      isLogin ? router.push('/home') : router.push({ pathname: '/auth', query: { mode: 'login' } })
+    }
+  }, [inputName, inputPassword, inputUser, isLogin, router])
 
   return (
     <div className={styles.mainContainer}>
@@ -61,7 +66,11 @@ const AuthPage = () => {
           value={inputPassword}
           onChange={handlePasswordChange}
         />
-        <button className={styles.button} onClick={handleClick}>
+        <button
+          className={styles.button}
+          onClick={handleClick}
+          disabled={!inputUser || !inputPassword}
+        >
           {title}
         </button>
         <a href={`/auth?mode=${redirectMode}`}>Go to {redirectMode} page</a>
