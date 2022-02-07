@@ -12,12 +12,8 @@ const getWorks = async (props: WorkFilters): Promise<WorkData[]> => {
   if (props.order_by) link += `&&order_by=${props.order_by}`
   if (props.name) link += `&&name=${props.name}`
 
-  return axios(link, {
-    method: 'GET',
-    headers: {
-      token: localStorage.getItem('token') || ' ',
-    },
-  })
+  return axiosInstance
+    .get<WorkData[]>(link)
     .then(res => res.data)
     .catch(error => {
       if (error.response) {
