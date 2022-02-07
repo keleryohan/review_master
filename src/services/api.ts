@@ -10,7 +10,7 @@ const getWorks = async (props: WorkFilters): Promise<WorkData[]> => {
   let link = `works/?gender=${props.gender}`
 
   if (props.order_by) link += `&&order_by=${props.order_by}`
-  if (props.name) link += `&&name=${props.name}`
+  if (props.title) link += `&&title=${props.title}`
 
   return axiosInstance
     .get<WorkData[]>(link)
@@ -88,7 +88,7 @@ const deleteReview = async (reviewId: number) => {
 const createUser = async (name: string, email: string, password: string) => {
   return axiosInstance
     .post(`users`, { name, email, password })
-    .then(res => res.data)
+    .then(res => res.status)
     .catch(error => {
       if (error.response) {
         window.alert(error.response.data.message)
@@ -102,7 +102,7 @@ const loginUser = async (email: string, password: string) => {
   return axiosInstance
     .post(`users/session`, { email, password })
     .then(res => {
-      localStorage.setItems('token', res.data.token)
+      localStorage.setItem('token', res.data.token)
       return res.status
     })
     .catch(error => {

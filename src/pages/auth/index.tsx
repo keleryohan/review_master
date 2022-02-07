@@ -32,7 +32,7 @@ const AuthPage = () => {
   const handleClick = React.useCallback(async () => {
     const responseStatus = isLogin
       ? await api.loginUser(inputUser, inputPassword)
-      : await api.createUser(inputUser, inputName, inputPassword)
+      : await api.createUser(inputName, inputUser, inputPassword)
 
     if (responseStatus === 200) {
       isLogin ? router.push('/home') : router.push({ pathname: '/auth', query: { mode: 'login' } })

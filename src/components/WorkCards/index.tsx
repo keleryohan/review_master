@@ -15,7 +15,7 @@ const WorkCards = ({ works }: WorkData[] | any) => {
             className={styles.work}
             onClick={() => router.push(router.pathname + '/' + work.id)}
           >
-            <h2 className={styles.title}>{work.name}</h2>
+            <h2 className={styles.title}>{work.title}</h2>
             <h3 className={styles.description}>{work.description}</h3>
           </div>
         )

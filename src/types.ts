@@ -1,6 +1,6 @@
 export type WorkData = {
   id: number
-  name: string
+  title: string
   created_at: string
   published_at: string
   description: string
@@ -12,7 +12,7 @@ export type WorkData = {
 
 export type WorkFilters = {
   gender: string
-  name?: string
+  title?: string
   order_by?: string
 }
 
