@@ -5,10 +5,12 @@ import { useRouter } from 'next/router'
 const HomePage = () => {
   const router = useRouter()
 
+  /*
   React.useEffect(() => {
     const token = localStorage.getItem('token')
     if (!token) router.push({ pathname: '/auth', query: { mode: 'login' } })
   }, [router])
+  */
 
   return (
     <div className={styles.mainContainer}>

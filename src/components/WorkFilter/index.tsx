@@ -20,7 +20,12 @@ const WorkFilter = props => {
         title: name || null,
         order_by: orderBy ? orderBy.value : null,
       }
-      props.setWorkList(await api.getWorks(filters))
+      //props.setWorkList(await api.getWorks(filters))
+      props.setWorkList([
+        { id: 1, title: 'title1', description: 'description1' },
+        { id: 2, title: 'title2', description: 'description2' },
+        { id: 3, title: 'title3', description: 'description3' },
+      ])
     }
     auxSetWork()
   }

@@ -19,10 +19,7 @@ export type WorkFilters = {
 export type ReviewData = {
   id: string
   created_at: string
-  note: number
-  title: string
-  description: string
-  author: string
+  liked: boolean
   work_id: number
 }
 

@@ -7,12 +7,26 @@ import { WorkData } from '~/types'
 import styles from './styles.module.css'
 
 const WorkWithReviews = ({ id }: { id: number }) => {
-  const [workData, setWorkData] = React.useState<WorkData>()
+  //const [workData, setWorkData] = React.useState<WorkData>()
+  const [workData, setWorkData] = React.useState<any>()
   const [reviews, setReviews] = React.useState([])
 
-  const getWorkData = React.useCallback(async () => setWorkData(await api.getWork(id)), [id])
+  //const getWorkData = React.useCallback(async () => setWorkData(await api.getWork(id)), [id])
 
-  const getReviews = React.useCallback(async () => setReviews(await api.getReviews(id)), [id])
+  const getWorkData = React.useCallback(
+    async () =>
+      setWorkData(
+        [
+          { id: 1, title: 'title1', description: 'description1' },
+          { id: 2, title: 'title2', description: 'description2' },
+          { id: 3, title: 'title3', description: 'description3' },
+        ].find(e => e.id === id)
+      ),
+    [id]
+  )
+
+  //const getReviews = React.useCallback(async () => setReviews(await api.getReviews(id)), [id])
+  const getReviews = React.useCallback(async () => setReviews([]), [id])
 
   React.useEffect(() => {
     if (id) getWorkData()
